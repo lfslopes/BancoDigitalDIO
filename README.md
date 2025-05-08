@@ -8,3 +8,62 @@ da [DIO - Digital Innovation One](https://web.dio.me/).
 - O objetivo deste desafio prático é reforçar o conhecimento em Programação Orientada a Objetos (POO) em Java,
   através da implementação de um banco digital.
 - Para este projeto foi disponibilizado um repositório no [GitHub](https://github.com/falvojr/lab-banco-digital-oo) com uma implementação de referência.
+
+Neste projeto, existem 6 classes e 1 interface, sendo uma dessas classes a Main, onde testamos as funcionalidades do banco. Para a estrutura do banco, temos:
+
+```mermaid
+---
+title: Banco
+---
+classDiagram
+  namespace cliente{
+    class Cliente{
+      -id: int
+      -nome: String
+      -idade: int
+      -*idCounter: int*$
+    }
+  }
+  namespace conta {
+    class IConta{
+      <<interface>>
+      +*sacar*(valor: double): boolean
+      +*depositar*(valor: double): boolean
+      +*transferir*(valor: double, contaDestino: IConta): boolean
+      +*imprimirExtrato*(): void
+    }
+    class Conta{
+      <<abstract>>
+      -agencia: int
+      -numero: int
+      -saldo: double
+      -cliente: Cliente
+    }
+    class ContaCorrente{
+      -🔒AGENCIA_PADRAO: int$
+      -CONTA_PADRAO: int$
+      -🔒TAXA_SAQUE: double$
+      +criarContaCorrente(cliente: Cliente): ContaCorrente$
+      +criarContaCorrente(cliente: Cliente, double saldoInicial): ContaCorrente$
+    }
+    class ContaPoupanca{
+      -🔒AGENCIA_PADRAO: int$
+      -CONTA_PADRAO: int$
+      +criarContaPoupanca(cliente: Cliente): ContaPoupanca$
+      +criarContaPoupanca(cliente: Cliente, double saldoInicial): ContaPoupanca$
+    }
+  }
+  class Banco{
+    -🔒clientes: List<Cliente>$
+    -🔒contas: List<Conta>$
+    +adicionarConta(conta: Conta): void$
+    +adicionarCliente(cliente: Cliente): void$
+    +listaClientes(): List<Cliente>$
+    +listaContas(): List<Conta>
+  }
+  Conta <.. IConta: implementa
+  ContaCorrente <-- Conta: herda
+  ContaPoupanca <-- Conta: herda
+  Conta -- Banco: lista
+  Cliente -- Banco: lista
+```
