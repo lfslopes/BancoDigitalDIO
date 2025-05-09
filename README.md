@@ -9,7 +9,7 @@ da [DIO - Digital Innovation One](https://web.dio.me/).
   através da implementação de um banco digital.
 - Para este projeto foi disponibilizado um repositório no [GitHub](https://github.com/falvojr/lab-banco-digital-oo) com uma implementação de referência.
 
-Neste projeto, existem 6 classes e 1 interface, sendo uma dessas classes a Main, onde testamos as funcionalidades do banco. Para a estrutura do banco, temos:
+Neste projeto, existem 6 classes e 1 interface, sendo uma dessas classes a Main, onde testamos as funcionalidades do banco.  Para a estrutura do banco, temos as seguintes classes:
 
 ```mermaid
 ---
@@ -67,3 +67,6 @@ classDiagram
   Conta -- Banco: lista
   Cliente -- Banco: lista
 ```
+Através da Interface IConta é mostrada as operações principais que uma conta no banco tem, e na classe Conta temos os atributos que uma conta de banco pode ter. Através daí as classes concretas ContaCorrente e ContaPoupanca tiram suas funcionalidades principais, deixando somente algumas funcionalidades específicas para serem implementadas exclusivamente pelas classes.  
+  
+Na classe Main, tem alguns testes das funções principais do Banco Digital.
